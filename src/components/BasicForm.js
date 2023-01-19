@@ -1,9 +1,13 @@
 import { useFormik } from "formik";
-import { basicSchema } from "../schemas";
+import { basicSchema } from "../schemas/index";
+
+const onSubmit = () => {
+  // submitted!
+};
 const BasicForm = () => {
   // Destructure what we want out of useFormik so we don't have to do
   // formik.thingIWant every time.
-  const { values, handleBlur, handleChange } = useFormik({
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     // These are like the useStates for the inputs
     initialValues: {
       email: "",
@@ -13,10 +17,12 @@ const BasicForm = () => {
     },
     // Give it the schema we made to check validation of each value
     validationSchema: basicSchema,
+    onSubmit,
   });
 
+  console.log(errors);
   return (
-    <form autoComplete="off">
+    <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email">Email</label>
       <input
         value={values.email}
