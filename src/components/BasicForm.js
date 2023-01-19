@@ -1,15 +1,18 @@
 import { useFormik } from "formik";
-
+import { basicSchema } from "../schemas";
 const BasicForm = () => {
   // Destructure what we want out of useFormik so we don't have to do
   // formik.thingIWant every time.
-  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
+  const { values, handleBlur, handleChange } = useFormik({
+    // These are like the useStates for the inputs
     initialValues: {
       email: "",
       age: "",
       password: "",
       confirmPassword: "",
     },
+    // Give it the schema we made to check validation of each value
+    validationSchema: basicSchema,
   });
 
   return (
