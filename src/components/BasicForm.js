@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 
 const BasicForm = () => {
-  const formik = useFormik({
+  // Destructure what we want out of useFormik so we don't have to do
+  // formik.thingIWant every time.
+  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
       age: "",
@@ -10,15 +12,13 @@ const BasicForm = () => {
     },
   });
 
-  console.log(formik);
-
   return (
     <form autoComplete="off">
       <label htmlFor="email">Email</label>
       <input
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
         id="email"
         type="email"
         placeholder="Enter your email"
@@ -26,9 +26,9 @@ const BasicForm = () => {
 
       <label htmlFor="age">Age</label>
       <input
-        value={formik.values.age}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        value={values.age}
+        onChange={handleChange}
+        onBlur={handleBlur}
         id="age"
         type="number"
         placeholder="Enter your age"
@@ -36,9 +36,9 @@ const BasicForm = () => {
 
       <label htmlFor="password">Password</label>
       <input
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
         id="password"
         type="password"
         placeholder="Enter your password"
@@ -46,9 +46,9 @@ const BasicForm = () => {
 
       <label htmlFor="password">Confirm Password</label>
       <input
-        value={formik.values.confirmPassword}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        value={values.confirmPassword}
+        onChange={handleChange}
+        onBlur={handleBlur}
         id="confirmPassword"
         type="password"
         placeholder="Confirm your password"
