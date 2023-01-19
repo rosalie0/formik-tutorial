@@ -7,6 +7,9 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // schema for the basic form
 // Our schema is an object that has a shape like...
 export const basicSchema = yup.object().shape({
+  // ABOUT WHITE SPACES:
+  // .required() is smart enough to treat an entry that is all whitespaces to count as ''
+
   // email is a string, that is an email, that is required
   // the string you pass in as the argument is what you want the error message to look like
   email: yup.string().email("please enter a valid email").required("Required"),
